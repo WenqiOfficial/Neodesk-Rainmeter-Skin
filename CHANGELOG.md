@@ -9,6 +9,8 @@
 
 ### Improved
 
+- Unified all runtime skin files to UTF-16 LE with BOM.
+- Added automatic encoding validation to the build.
 - Refined local build commands with explicit development and release modes.
 - Cleaned project layout by moving visualizer generation into `scripts/`.
 - Consolidated installation, configuration, build, and release documentation.

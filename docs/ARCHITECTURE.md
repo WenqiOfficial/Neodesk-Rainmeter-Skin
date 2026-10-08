@@ -36,6 +36,8 @@ The visualizer skins are generated variants. The main, no-reflection, left, and 
 
 The visualizer generator lives in `scripts\visualizer.ps1`. It is a development tool and is not included in the runtime skin package.
 
+Runtime skin files use UTF-16 LE with BOM. This is required by Rainmeter for Unicode-safe `.ini`, `.inc`, text, and Lua files.
+
 ## Build system
 
 `build.ps1` copies the skin to a staging directory, injects the version, copies the project documents into the package, and creates a zip with a SHA-256 checksum.

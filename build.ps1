@@ -6,6 +6,9 @@ param(
 
 $ErrorActionPreference = 'Stop'
 $repo = Split-Path -Parent $MyInvocation.MyCommand.Path
+
+& (Join-Path $repo 'scripts/check-encoding.ps1') -Path (Join-Path $repo 'NeoDesk')
+
 $resolvedVersion = (& (Join-Path $repo 'scripts/version.ps1') -Release $Release).Trim()
 $buildRoot = Join-Path $repo 'build'
 $stage = Join-Path $buildRoot 'NeoDesk'

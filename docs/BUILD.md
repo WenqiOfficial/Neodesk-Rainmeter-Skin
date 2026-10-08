@@ -43,6 +43,12 @@ The build does not modify the source files.
 - Local release builds use the value passed to `-Release`.
 - GitHub release builds use the tag name, with the leading `v` removed.
 
+## Encoding
+
+All runtime skin files under `NeoDesk\` use UTF-16 LE with BOM.
+
+`scripts\check-encoding.ps1` validates every `.ini`, `.inc`, `.txt`, and `.lua` file before packaging.
+
 ## Continuous integration
 
 ### Build workflow
