@@ -1,21 +1,20 @@
 [CmdletBinding()]
 param(
-    [string]$Version
+    [string]$Release
 )
 
-function Get-NeoDeskVersion {
-    if ($Version) {
-        $v = $Version.Trim() -replace '^v', ''
-    }
-    elseif ($env:GITHUB_REF_TYPE -eq 'tag') {
-        $v = $env:GITHUB_REF_NAME -replace '^v', ''
-    }
-    else {
-        $v = 'dev+' + (Get-Date -Format 'yyyyMMddHHmm')
-    }
-
-    $v = $v -replace '\s', '-'
-    return $v
+if ($Release) {
+    $resolved = $Release.Trim()
+} elseif ($env:GITHUB_REF_TYPE -eq 'tag') {
+    $resolved = $env:GITHUB_REF_NAME
+} else {
+    $resolved = 'dev+' + (Get-Date -Format 'yyyyMMddHHmm')
 }
 
-Get-NeoDeskVersion
+$resolved = $resolved -replace '^v', '' -replace '\s', '-'
+
+if ([string]::IsNullOrWhiteSpace($resolved)) {
+    throw 'Version cannot be empty.'
+}
+
+Write-Output $resolved

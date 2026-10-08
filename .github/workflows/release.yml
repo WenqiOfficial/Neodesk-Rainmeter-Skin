@@ -26,14 +26,18 @@ jobs:
 
       - name: Build
         shell: pwsh
-        run: ./build.ps1 -Version '${{ steps.version.outputs.version }}'
+        run: ./build.ps1 -Release '${{ steps.version.outputs.version }}'
+
+      - name: Generate release notes
+        shell: pwsh
+        run: ./scripts/release-notes.ps1 -Version '${{ steps.version.outputs.version }}'
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@v2
         with:
           name: NeoDesk ${{ steps.version.outputs.version }}
           tag_name: ${{ github.ref_name }}
+          body_path: dist/RELEASE_NOTES.md
           files: |
             dist/*.zip
             dist/*.sha256
-          generate_release_notes: true

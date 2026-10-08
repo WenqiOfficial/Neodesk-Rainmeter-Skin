@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.2.0 - 2026-10-08
+
+### Added
+
+- Automated release workflow triggered by `v*` tags.
+- Automatic release notes generated from `CHANGELOG.md`.
+
+### Improved
+
+- Refined local build commands with explicit development and release modes.
+- Cleaned project layout by moving visualizer generation into `scripts/`.
+- Consolidated installation, configuration, build, and release documentation.
+- Matured the bilingual README for open-source presentation.
+
 ## 1.1.0 - 2026-10-08
 
 ### Added

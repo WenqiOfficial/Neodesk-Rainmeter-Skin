@@ -10,7 +10,7 @@ NeoDesk/
     Fonts/        Bundled MiSans fonts.
     Images/       Shared images.
     Language/     English and Chinese label files.
-    Scripts/      Rainmeter Lua and helper build scripts.
+    Scripts/      Runtime Lua scripts.
     Text/         Random sentence source for the greeting skin.
     Theme/        Shared settings, styles, and version metadata.
   Clock/          Time and date skin.
@@ -33,6 +33,8 @@ NeoDesk/
 Each skin is a standalone `.ini` file. Shared options are pulled in through `@include` directives. The system skin additionally loads `GpuSplit.lua`, which reads `UsageMonitor` GPU Engine samples and computes per-adapter usage.
 
 The visualizer skins are generated variants. The main, no-reflection, left, and right versions all share the same audio engine and design vocabulary.
+
+The visualizer generator lives in `scripts\visualizer.ps1`. It is a development tool and is not included in the runtime skin package.
 
 ## Build system
 

@@ -1,6 +1,12 @@
 # NeoDesk Rainmeter 皮肤
 
-NeoDesk 是一套紧凑的 Rainmeter 桌面皮肤，包含时钟、问候卡片、网络状态、系统监控和一个 121 段音频可视化器。
+[English](README.md) | [简体中文](README.zh-CN.md)
+
+[![Release](https://img.shields.io/github/v/release/WenqiOfficial/Neodesk-Rainmeter-Skin?style=flat-square)](https://github.com/WenqiOfficial/Neodesk-Rainmeter-Skin/releases)
+[![License](https://img.shields.io/github/license/WenqiOfficial/Neodesk-Rainmeter-Skin?style=flat-square)](LICENSE)
+[![Platform](https://img.shields.io/badge/platform-Windows-blue?style=flat-square)](#)
+
+NeoDesk 是一套为 Windows 设计的紧凑型 Rainmeter 皮肤，包含时钟、问候卡片、网络状态、系统监控和 121 段音频可视化器，整体采用统一的深色卡片风格。
 
 ## 功能
 
@@ -12,30 +18,30 @@ NeoDesk 是一套紧凑的 Rainmeter 桌面皮肤，包含时钟、问候卡片�
 
 ## 环境要求
 
-- Windows 10 1709 或更高，推荐 Windows 11。
+- Windows 10 1709 或更高。
 - Rainmeter 4.5 或更高。
-- 内置 MiSans 字体和 Rainmeter 插件，无需额外安装第三方 Rainmeter 插件。
+- 无需额外安装第三方 Rainmeter 插件。
 
 ## 安装
 
-1. 从 [releases](releases) 下载最新的 `NeoDesk_<version>.zip`。
-2. 将其中的 `NeoDesk` 文件夹解压到 Rainmeter 的 `Skins` 目录。
-3. 打开 Rainmeter，刷新全部皮肤，然后启用你需要的布局。
+1. 从 [releases](https://github.com/WenqiOfficial/Neodesk-Rainmeter-Skin/releases) 下载最新的 `NeoDesk_<version>.zip`。
+2. 将 `NeoDesk` 文件夹解压到 Rainmeter 的 `Skins` 目录。
+3. 刷新 Rainmeter 并启用你需要的布局。
 
 详细说明见 [docs/INSTALL.md](docs/INSTALL.md)。
 
-## 本地构建
+## 构建
 
 ```powershell
 .\build.ps1
 ```
 
-默认会生成类似 `dev+202610082045` 的开发版本。
+默认会生成类似 `NeoDesk_dev+202610082045.zip` 的开发包。
 
-构建指定版本：
+构建发布包：
 
 ```powershell
-.\build.ps1 -Version 1.2.0
+.\build.ps1 -Release 1.2.0
 ```
 
 输出位置：
@@ -45,18 +51,44 @@ NeoDesk 是一套紧凑的 Rainmeter 桌面皮肤，包含时钟、问候卡片�
 
 详见 [docs/BUILD.md](docs/BUILD.md)。
 
-## 版本规则
+## 发布
 
-- 开发版使用 `dev+yyyyMMddHHmm`。
-- 发布版使用 Git 标签名，例如 `v1.2.0` 对应 `1.2.0`。
-- 手动传入 `-Version` 时优先使用输入值。
+推送 `v1.2.0` 这类 tag 后，GitHub Actions 会自动：
 
-详见 [docs/VERSIONING.md](docs/VERSIONING.md)。
+1. 构建皮肤包。
+2. 从 `CHANGELOG.md` 生成 release 内容。
+3. 发布 GitHub Release 并附带 zip 和校验文件。
+
+## 项目结构
+
+```text
+NeoDesk/
+  @Resources/
+    Fonts/
+    Images/
+    Language/
+    Scripts/
+    Text/
+    Theme/
+  Clock/
+  Greeting/
+  Network/
+  System/
+  Visualizer/
+  Visualizer_L/
+  Visualizer_R/
+```
+
+更多结构说明见 [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)。
+
+## 文档
+
+- [安装与配置](docs/INSTALL.md)
+- [构建与发布](docs/BUILD.md)
+- [架构说明](docs/ARCHITECTURE.md)
+- [GPU 统计口径](docs/GPU_METRICS.md)
+- [致谢](docs/CREDITS.md)
 
 ## 许可证
 
 MIT，见 [LICENSE](LICENSE)。
-
-## 致谢
-
-见 [docs/CREDITS.md](docs/CREDITS.md)。

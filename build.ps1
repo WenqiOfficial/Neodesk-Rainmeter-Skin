@@ -1,12 +1,12 @@
 [CmdletBinding()]
 param(
-    [string]$Version,
+    [string]$Release,
     [string]$OutputDir = 'dist'
 )
 
 $ErrorActionPreference = 'Stop'
 $repo = Split-Path -Parent $MyInvocation.MyCommand.Path
-$resolvedVersion = (& (Join-Path $repo 'scripts/version.ps1') -Version $Version).Trim()
+$resolvedVersion = (& (Join-Path $repo 'scripts/version.ps1') -Release $Release).Trim()
 $buildRoot = Join-Path $repo 'build'
 $stage = Join-Path $buildRoot 'NeoDesk'
 $outDir = Join-Path $repo $OutputDir
