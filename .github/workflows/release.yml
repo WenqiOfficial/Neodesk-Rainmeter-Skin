@@ -1,0 +1,39 @@
+name: Release NeoDesk
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    name: Build and publish release
+    runs-on: windows-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Resolve version
+        id: version
+        shell: pwsh
+        run: |
+          $version = '${{ github.ref_name }}' -replace '^v', ''
+          "version=$version" >> $env:GITHUB_OUTPUT
+
+      - name: Build
+        shell: pwsh
+        run: ./build.ps1 -Version '${{ steps.version.outputs.version }}'
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: NeoDesk ${{ steps.version.outputs.version }}
+          tag_name: ${{ github.ref_name }}
+          files: |
+            dist/*.zip
+            dist/*.sha256
+          generate_release_notes: true

@@ -1,0 +1,10 @@
+dist/
+build/
+*.tmp
+*.log
+*.bak
+*.zip
+*.sha256
+Thumbs.db
+desktop.ini
+*.rmskin

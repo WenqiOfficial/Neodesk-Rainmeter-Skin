@@ -1,0 +1,41 @@
+name: Build NeoDesk
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Optional version, for example 1.2.0 or dev+202610082045'
+        required: false
+        default: ''
+
+jobs:
+  build:
+    name: Build skin package
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build
+        shell: pwsh
+        run: |
+          $version = '${{ github.event.inputs.version }}'
+          if ($version) {
+            ./build.ps1 -Version $version
+          } else {
+            ./build.ps1
+          }
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: NeoDesk-build
+          path: |
+            dist/*.zip
+            dist/*.sha256
+          if-no-files-found: error
